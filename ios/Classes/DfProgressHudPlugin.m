@@ -36,7 +36,7 @@
             }
             
             if (backgroundColor && [backgroundColor isKindOfClass:[NSString class]] && backgroundColor.length > 0) {
-                UIColor *bgColor = [UIColor colorWithHexString:backgroundColor alpha:0.90];
+                UIColor *bgColor = [UIColor colorWithHexString:backgroundColor];
                 [SVProgressHUD setBackgroundColor:bgColor];
             }
             
