@@ -5,6 +5,20 @@ import 'package:flutter/services.dart';
 import 'package:df_progress_hud/df_progress_hud.dart';
 
 void main() {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // 配置样式
+  DfProgressHud().showHudSettings(
+    dismissTimeInterval: 2,
+    foregroundColor: "ffffff",
+    backgroundColor: "444444",
+    cornerRadius: 4,
+    borderWidth: 0,
+    borderColor: "f7f7f7",
+    fontSize: 14,
+  );
+
   runApp(const MyApp());
 }
 
@@ -22,36 +36,34 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await _dfProgressHudPlugin.getPlatformVersion() ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
   }
 
   void showProgressStatus() {
-    _dfProgressHudPlugin.showToastStatus(message: "加载中...");
+    _dfProgressHudPlugin.showStatus(message: "加载中...");
     Future.delayed(Duration(seconds: 5), () {
       _dfProgressHudPlugin.dismiss();
     });
+  }
+
+  void showSuccess() {
+    _dfProgressHudPlugin.showSuccess(message: "加载成功");
+    // Future.delayed(Duration(seconds: 5), () {
+    //   _dfProgressHudPlugin.dismiss();
+    // });
+  }
+
+  void showError() {
+    _dfProgressHudPlugin.showError(message: "加载失败");
+    // Future.delayed(Duration(seconds: 5), () {
+    //   _dfProgressHudPlugin.dismiss();
+    // });
+  }
+
+  void showToast() {
+    _dfProgressHudPlugin.showToast(message: "已加载，请点击详情查看内容哦～");
+    // Future.delayed(Duration(seconds: 5), () {
+    //   _dfProgressHudPlugin.dismiss();
+    // });
   }
 
   @override
@@ -70,16 +82,56 @@ class _MyAppState extends State<MyApp> {
                 height: 50,
                 child: Text('Running on: $_platformVersion\n'),
               ),
-              Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
+              Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
               Container(
                 width: 100,
-                color: Colors.red,
-                height: 50,
+                color: Colors.blue,
+                height: 30,
+                alignment: Alignment.center,
                 child: GestureDetector(
                   onTap: () {
                     showProgressStatus();
                   },
                   child: Text('显示进度'),
+                ),
+              ),
+              Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+              Container(
+                width: 100,
+                color: Colors.blue,
+                height: 30,
+                alignment: Alignment.center,
+                child: GestureDetector(
+                  onTap: () {
+                    showSuccess();
+                  },
+                  child: Text('提示成功'),
+                ),
+              ),
+              Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+              Container(
+                width: 100,
+                color: Colors.blue,
+                height: 30,
+                alignment: Alignment.center,
+                child: GestureDetector(
+                  onTap: () {
+                    showError();
+                  },
+                  child: Text('提示失败'),
+                ),
+              ),
+              Padding(padding: EdgeInsets.symmetric(vertical: 5.0)),
+              Container(
+                width: 100,
+                color: Colors.blue,
+                height: 30,
+                alignment: Alignment.center,
+                child: GestureDetector(
+                  onTap: () {
+                    showToast();
+                  },
+                  child: Text('提示toast'),
                 ),
               ),
             ],

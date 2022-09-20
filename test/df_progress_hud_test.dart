@@ -4,22 +4,57 @@ import 'package:df_progress_hud/df_progress_hud_platform_interface.dart';
 import 'package:df_progress_hud/df_progress_hud_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-class MockDfProgressHudPlatform 
+class MockDfProgressHudPlatform
     with MockPlatformInterfaceMixin
     implements DfProgressHudPlatform {
 
   @override
-  Future<String?> getPlatformVersion() => Future.value('42');
-
-  @override
-  Future<void> showProgressStatus({String? message}) {
-    // TODO: implement showProgressStatue
+  Future<void> dismiss() {
+    // TODO: implement dismissHud
     throw UnimplementedError();
   }
 
   @override
-  Future<void> dismissHud() {
-    // TODO: implement dismissHud
+  Future<void> showToast({String? message}) {
+    // TODO: implement showInfo
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> showError({String? message}) {
+    // TODO: implement showError
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> showProgress({double? progress}) {
+    // TODO: implement showProgress
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> showSuccess({String? message}) {
+    // TODO: implement showSuccess
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> showHudSettings({
+    int? dismissTimeInterval,
+    String? foregroundColor,
+    String? backgroundColor,
+    double? cornerRadius,
+    double? fontSize,
+    String? borderColor,
+    double? borderWidth,
+  }) {
+    // TODO: implement showHudSettings
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> showStatus({String? message}) {
+    // TODO: implement showStatus
     throw UnimplementedError();
   }
 }
@@ -35,7 +70,7 @@ void main() {
     DfProgressHud dfProgressHudPlugin = DfProgressHud();
     MockDfProgressHudPlatform fakePlatform = MockDfProgressHudPlatform();
     DfProgressHudPlatform.instance = fakePlatform;
-  
-    expect(await dfProgressHudPlugin.getPlatformVersion(), '42');
+
+    // expect(await dfProgressHudPlugin.getPlatformVersion(), '42');
   });
 }

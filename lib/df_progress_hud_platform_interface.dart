@@ -14,7 +14,7 @@ abstract class DfProgressHudPlatform extends PlatformInterface {
   ///
   /// Defaults to [MethodChannelDfProgressHud].
   static DfProgressHudPlatform get instance => _instance;
-  
+
   /// Platform-specific implementations should set this with their own
   /// platform-specific class that extends [DfProgressHudPlatform] when
   /// they register themselves.
@@ -23,15 +23,40 @@ abstract class DfProgressHudPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
-  }
-
-  Future<void> showProgressStatus({String? message}) {
+  /// backgroundColor、backgroundColor为ffbbcc这样颜色字符串
+  Future<void> showHudSettings({
+    int? dismissTimeInterval,
+    String? foregroundColor,
+    String? backgroundColor,
+    double? cornerRadius,
+    double? fontSize,
+    String? borderColor,
+    double? borderWidth,
+  }) {
     throw UnimplementedError('showProgressStatus() has not been implemented.');
   }
 
-  Future<void> dismissHud() {
+  Future<void> showStatus({String? message}) {
+    throw UnimplementedError('showProgressStatus() has not been implemented.');
+  }
+
+  Future<void> showToast({String? message}) {
+    throw UnimplementedError('showToast() has not been implemented.');
+  }
+
+  Future<void> showSuccess({String? message}) {
+    throw UnimplementedError('showSuccess() has not been implemented.');
+  }
+
+  Future<void> showError({String? message}) {
+    throw UnimplementedError('showError() has not been implemented.');
+  }
+
+  Future<void> showProgress({double? progress}) {
+    throw UnimplementedError('showProgress() has not been implemented.');
+  }
+
+  Future<void> dismiss() {
     throw UnimplementedError('dismissHud() has not been implemented.');
   }
 }
